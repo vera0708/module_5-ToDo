@@ -78,36 +78,39 @@ export const createTable = () => {
     return table;
 };
 
-export const createRow = ({ number, task }) => {
+export const createRow = (task) => {
+    if (task !== 'default') {
 
-    const row = document.createElement('tr');
-    row.classList.add('table-light');
+        const row = document.createElement('tr');
+        row.classList.add('table-light');
 
-    const tdNumber = document.createElement('td');
-    tdNumber.textContent = number;
+        const tdNumber = document.createElement('td');
+        tdNumber.textContent = 'X3';
 
-    const tdTask = document.createElement('td');
-    tdTask.classList.add('table-light');;
-    tdTask.textContent = task;
+        const tdTask = document.createElement('td');
+        tdTask.classList.add('table-light');;
+        tdTask.textContent = task;
 
-    const tdStatus = document.createElement('td');
-    tdStatus.textContent = 'В процессе';
+        const tdStatus = document.createElement('td');
+        tdStatus.textContent = 'В процессе';
 
-    const tdBtnGroupe = document.createElement('td');
+        const tdBtnGroupe = document.createElement('td');
 
-    const btnDel = document.createElement('button');
-    btnDel.classList.add('btn', 'btn-danger', 'me-3');
-    btnDel.type = 'button';
-    btnDel.textContent = 'Удалить';
+        const btnDel = document.createElement('button');
+        btnDel.classList.add('btn', 'btn-danger', 'me-3');
+        btnDel.type = 'button';
+        btnDel.textContent = 'Удалить';
 
-    const btnEnd = document.createElement('button');
-    btnEnd.classList.add('btn', 'btn-success');
-    btnEnd.type = 'button';
-    btnEnd.textContent = 'Завершить';
+        const btnEnd = document.createElement('button');
+        btnEnd.classList.add('btn', 'btn-success');
+        btnEnd.type = 'button';
+        btnEnd.textContent = 'Завершить';
 
-    tdBtnGroupe.append(btnDel, btnEnd);
+        tdBtnGroupe.append(btnDel, btnEnd);
 
-    row.append(tdNumber, tdTask, tdStatus, tdBtnGroupe);
+        row.append(tdNumber, tdTask, tdStatus, tdBtnGroupe);
 
-    return row;
+        return row;
+    }
+
 }

@@ -1,4 +1,6 @@
 import { createForm, createMain, createRow, createTable, createTableWrapper, createTitle } from "./createElements.js";
+import { setData } from "./data.js";
+import { getStorage } from "./serviceStorage.js";
 
 export const renderTodo = (elem, data) => {
     const allRows = data.map(createRow);
@@ -7,7 +9,7 @@ export const renderTodo = (elem, data) => {
 }
 
 export const renderToDoList = (app) => {
-    // setData(getStorage('dataList'));
+    setData(getStorage('dataList'));
 
     const main = createMain();
     const title = createTitle();
@@ -21,7 +23,6 @@ export const renderToDoList = (app) => {
 
     return {
         form,
-        thead: table.thead,
         list: table.tbody,
         btnSubmit,
         btnReset,
