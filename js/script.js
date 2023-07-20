@@ -1,4 +1,4 @@
-import { deleteTask, formControl } from "./control.js";
+import { completeTask, controlForm, deleteTask, toggleDisableBtn } from "./control.js";
 import { renderToDoList, renderTodo } from "./renders.js";
 import { getData } from './data.js';
 
@@ -8,8 +8,10 @@ import { getData } from './data.js';
         const { list, btnReset, btnSubmit, form } = renderToDoList(app);
 
         renderTodo(list, getData());
+        controlForm(form, list, btnSubmit);
         deleteTask(list);
-        formControl(form, list);
+        toggleDisableBtn(form, btnSubmit);
+        completeTask(list);
 
         // const userChoice = prompt(`Введите ваше имя`);
     }

@@ -3,7 +3,7 @@ import { setData } from "./data.js";
 import { getStorage } from "./serviceStorage.js";
 
 export const renderTodo = (elem, data) => {
-    const allRows = data.map(createRow);
+    const allRows = data.map((task, index) => createRow(task, index + 1));
     elem.append(...allRows);
     return allRows;
 }

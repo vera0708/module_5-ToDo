@@ -13,6 +13,6 @@ export const setStorage = (key, obj) => {
 };
 
 export const removeStorage = (task) => {
-    const filteredData = getData().filter(todo => todo.task !== task)
-    setStorage('todoList', filteredData);
+    const filteredData = getData().filter(todo => todo.task !== task);
+    setStorage('dataList', filteredData);
 }

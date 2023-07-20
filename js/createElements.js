@@ -10,15 +10,6 @@ export const createTitle = () => {
     return h3;
 };
 
-
-//  export const btn = ({ className, type, text }) => {
-//         const button = document.createElement('button');
-//         button.className = className;
-//         button.type = type;
-//         button.textContent = text;
-//         return button;
-//     };
-
 export const createForm = () => {
     const form = document.createElement('form');
     form.classList.add('d-flex', 'align-items-center', 'mb-3');
@@ -29,9 +20,10 @@ export const createForm = () => {
     `);
 
     const btnSubmit = document.createElement('button');
-    btnSubmit.classList.add('btn', 'btn-primary', 'me-3');
+    btnSubmit.classList.add('btn', 'btn-primary', 'me-3', 'submit-button');
     btnSubmit.type = 'submit';
     btnSubmit.textContent = 'Сохранить';
+    btnSubmit.disabled = true;
 
     const btnReset = document.createElement('button');
     btnReset.classList.add('btn', 'btn-warning');
@@ -78,39 +70,51 @@ export const createTable = () => {
     return table;
 };
 
-export const createRow = (task) => {
-    if (task !== 'default') {
+export const createRow = (task, taskNumber) => {
+    const row = document.createElement('tr');
+    row.classList.add('table-light');
 
-        const row = document.createElement('tr');
-        row.classList.add('table-light');
+    const tdNumber = document.createElement('td');
+    tdNumber.classList.add('task-number');
+    tdNumber.textContent = taskNumber;
 
-        const tdNumber = document.createElement('td');
-        tdNumber.textContent = 'X3';
+    const tdTask = document.createElement('td');
+    tdTask.classList.add('task');
+    tdTask.textContent = task.task;
 
-        const tdTask = document.createElement('td');
-        tdTask.classList.add('table-light');;
-        tdTask.textContent = task;
+    const tdStatus = document.createElement('td');
+    tdTask.classList.add('status');
+    tdStatus.textContent = task.status ? 'В процессе' : 'Выполнена';
 
-        const tdStatus = document.createElement('td');
-        tdStatus.textContent = 'В процессе';
+    const tdInvisibleId = document.createElement('td');
+    tdInvisibleId.classList.add('task-id');
+    tdInvisibleId.textContent = task.id;
+    tdInvisibleId.style.display = 'none';
 
-        const tdBtnGroupe = document.createElement('td');
+    const tdBtnGroupe = document.createElement('td');
 
-        const btnDel = document.createElement('button');
-        btnDel.classList.add('btn', 'btn-danger', 'me-3');
-        btnDel.type = 'button';
-        btnDel.textContent = 'Удалить';
+    const btnDel = document.createElement('button');
+    btnDel.classList.add('btn', 'btn-danger', 'me-3');
+    btnDel.type = 'button';
+    btnDel.textContent = 'Удалить';
 
-        const btnEnd = document.createElement('button');
-        btnEnd.classList.add('btn', 'btn-success');
-        btnEnd.type = 'button';
-        btnEnd.textContent = 'Завершить';
+    const btnEnd = document.createElement('button');
+    btnEnd.classList.add('btn', 'btn-success');
+    btnEnd.type = 'button';
+    btnEnd.textContent = 'Завершить';
 
-        tdBtnGroupe.append(btnDel, btnEnd);
+    tdBtnGroupe.append(btnDel, btnEnd);
 
-        row.append(tdNumber, tdTask, tdStatus, tdBtnGroupe);
+    row.append(tdNumber, tdTask, tdStatus, tdBtnGroupe, tdInvisibleId);
 
-        return row;
-    }
+    return row;
+};
 
-}
+export const updateTdNumber = (list) => {
+    const rows = list.querySelectorAll('.table-light');
+
+    rows.forEach((row, index) => {
+        const numberElem = row.querySelector('.task-number');
+        numberElem.textContent = index + 1;
+    });
+};
