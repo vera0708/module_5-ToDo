@@ -72,18 +72,18 @@ export const createTable = () => {
 
 export const createRow = (task, taskNumber) => {
     const row = document.createElement('tr');
-    row.classList.add('table-light');
+    row.classList.add(task.status ? 'table-light' : 'table-success');
 
     const tdNumber = document.createElement('td');
     tdNumber.classList.add('task-number');
     tdNumber.textContent = taskNumber;
 
     const tdTask = document.createElement('td');
-    tdTask.classList.add('task');
+    tdTask.classList.add(task.status ? 'task' : 'text-decoration-line-through');
     tdTask.textContent = task.task;
 
     const tdStatus = document.createElement('td');
-    tdTask.classList.add('status');
+    tdStatus.classList.add('status');
     tdStatus.textContent = task.status ? 'В процессе' : 'Выполнена';
 
     const tdInvisibleId = document.createElement('td');
@@ -117,4 +117,11 @@ export const updateTdNumber = (list) => {
         const numberElem = row.querySelector('.task-number');
         numberElem.textContent = index + 1;
     });
+};
+
+export const updateTdStatus = (list) => {
+    const row = list.querySelector('.table-success');
+    const statusElem = row.querySelector('.status');
+    statusElem.textContent = false;
+    console.log('Обновили статус', row);
 };

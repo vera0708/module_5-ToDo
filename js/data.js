@@ -27,8 +27,10 @@ export const removeTodo = (taskId) => {
 
 export const changeTodo = (taskToEnd, taskId) => {
     const dataList = getData();
-    const todoItem = dataList.find(item => item.id !== taskId);
+    const todoItem = dataList.find(item => item.id === taskId);
     todoItem.task = taskToEnd;
     todoItem.status = false;
+    console.log('Применили changeTodo к ', taskToEnd);
     setData(dataList);
+    console.log('данные в setData после changeTodo:', dataList);
 }

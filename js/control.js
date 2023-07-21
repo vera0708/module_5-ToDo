@@ -1,4 +1,4 @@
-import { createRow, updateTdNumber } from "./createElements.js";
+import { createRow, updateTdNumber, updateTdStatus } from "./createElements.js";
 import { addTodo, changeTodo, getData, removeTodo } from "./data.js";
 import { setStorage } from "./serviceStorage.js";
 
@@ -50,7 +50,8 @@ export const completeTask = (list) => {
         if (endBtn) {
             const compleRow = target.closest('.table-light');
             const completeTask = compleRow.querySelector('.task');
-            const taskIdElement = compleRow.querySelector('.task-id');
+            const completeTaskId = compleRow.querySelector('.task-id');
+            console.log('completeTaskId =', completeTaskId);
 
             compleRow.classList.remove('table-light');
             compleRow.classList.add('table-success');
@@ -59,12 +60,15 @@ export const completeTask = (list) => {
             completeTask.classList.add('text-decoration-line-through');
 
             const taskToEnd = completeTask.textContent;
-            const taskId = taskIdElement.textContent;
+            const taskId = completeTaskId.textContent;
+            console.log('taskId =', taskId);
 
             changeTodo(taskToEnd, taskId);
 
             const data = getData();
             setStorage('dataList', data);
+
+            updateTdStatus(list);
         }
     });
 };
