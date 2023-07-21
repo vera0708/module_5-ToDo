@@ -22,23 +22,34 @@ export const controlForm = (form, list, btnSubmit) => {
     })
 };
 
+export const clearInput = (form, btnReset) => {
+    const toDoInput = form.querySelector('.form-control');
+    btnReset.addEventListener('click', (e) => {
+        e.preventDefault();
+        toDoInput.value = '';
+    })
+};
+
 export const deleteTask = (list) => {
     list.addEventListener('click', (e) => {
         const target = e.target;
         const delBtn = target.closest('.btn-danger');
         if (delBtn) {
-            const delRow = target.closest('.table-light');
+            const beSure = confirm(`Вы уверены, что хотите удалить этот пункт?`);
+            if (beSure) {
+                const delRow = target.closest('.table-light');
 
-            const taskIdElement = delRow.querySelector('.task-id');
-            const taskId = taskIdElement.textContent;
+                const taskIdElement = delRow.querySelector('.task-id');
+                const taskId = taskIdElement.textContent;
 
-            removeTodo(taskId);
+                removeTodo(taskId);
 
-            const data = getData();
-            setStorage('dataList', data);
+                const data = getData();
+                setStorage('dataList', data);
 
-            target.closest('.table-light').remove();
-            updateTdNumber(list);
+                target.closest('.table-light').remove();
+                updateTdNumber(list);
+            }
         }
     });
 };
@@ -51,7 +62,6 @@ export const completeTask = (list) => {
             const compleRow = target.closest('.table-light');
             const completeTask = compleRow.querySelector('.task');
             const completeTaskId = compleRow.querySelector('.task-id');
-            console.log('completeTaskId =', completeTaskId);
 
             compleRow.classList.remove('table-light');
             compleRow.classList.add('table-success');
@@ -61,7 +71,6 @@ export const completeTask = (list) => {
 
             const taskToEnd = completeTask.textContent;
             const taskId = completeTaskId.textContent;
-            console.log('taskId =', taskId);
 
             changeTodo(taskToEnd, taskId);
 
