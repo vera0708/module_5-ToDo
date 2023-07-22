@@ -3,9 +3,10 @@ import { renderToDoList, renderTodo } from "./renders.js";
 import { getData } from './data.js';
 
 {
-    const init = (selectorApp) => {
+    const init = (selectorApp, user) => {
         const app = document.querySelector(selectorApp);
-        const { list, btnReset, btnSubmit, form } = renderToDoList(app);
+        const { list, btnReset, btnSubmit, form, formUser, overlayUser } = renderToDoList(app);
+        // modalContol(formUser, overlayUser);
 
         renderTodo(list, getData());
         controlForm(form, list, btnSubmit);
@@ -14,7 +15,9 @@ import { getData } from './data.js';
         toggleDisableBtn(form, btnSubmit);
         completeTask(list);
 
-        // const userChoice = prompt(`Введите ваше имя`);
+        console.log(user);
+
+        //    const user = prompt(`Введите ваше имя`);
     }
     window.toDoInit = init;
 }

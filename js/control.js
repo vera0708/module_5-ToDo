@@ -95,3 +95,13 @@ export const toggleDisableBtn = (form, btnSubmit) => {
         }
     });
 };
+
+// export const modalContol = (formUser, overlayUser) => {
+//     overlayUser.addEventListener('click', (e) => {
+//         const target = e.target;
+//         if (target === formOverlay ||
+//             target.closest('.close')) {
+//             formOverlay.classList.remove('is-visible');
+//         }
+//     });
+// };

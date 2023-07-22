@@ -19,20 +19,20 @@ export const createForm = () => {
         </label>
     `);
 
-    const btnSubmit = document.createElement('button');
-    btnSubmit.classList.add('btn', 'btn-primary', 'me-3', 'submit-button');
-    btnSubmit.type = 'submit';
-    btnSubmit.textContent = 'Сохранить';
-    btnSubmit.disabled = true;
+    const btnAuthe = document.createElement('button');
+    btnAuthe.classList.add('btn', 'btn-primary', 'me-3', 'submit-button');
+    btnAuthe.type = 'submit';
+    btnAuthe.textContent = 'Сохранить';
+    btnAuthe.disabled = true;
 
     const btnReset = document.createElement('button');
     btnReset.classList.add('btn', 'btn-warning');
     btnReset.type = 'button';
     btnReset.textContent = 'Очистить';
 
-    form.append(btnSubmit, btnReset);
+    form.append(btnAuthe, btnReset);
 
-    return { form, btnSubmit, btnReset };
+    return { form, btnAuthe, btnReset };
 };
 
 export const createTableWrapper = () => {
@@ -125,3 +125,31 @@ export const updateTdStatus = (list) => {
     statusElem.textContent = false;
     console.log('Обновили статус', row);
 };
+
+export const createFormUser = () => {
+    const overlay = document.createElement('div');
+    overlay.classList.add('form-overlay', 'is-visible');
+
+    const form = document.createElement('form');
+    form.classList.add('form');
+    form.insertAdjacentHTML('beforeend', `
+        <button class="close" type="button"></button>
+            <h2 class="form-title">Ведите ваше имя</h2>
+            <div class="form-groupe">
+                <label class="form-label" for ="name">Пользователь-владелец todo:</label>
+                <input class="form-input" name="name" id="name" type="text" required> 
+            </div>
+    `);
+
+    const btnAuthe = document.createElement('button');
+    btnAuthe.classList.add('btn', 'btn-primary', 'me-3');
+    btnAuthe.type = 'submit';
+    btnAuthe.textContent = 'Подтверждаю имя';
+
+    form.append(btnAuthe);
+    overlay.append(form);
+    return {
+        overlay,
+        form,
+    }
+} 
