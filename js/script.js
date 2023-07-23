@@ -14,9 +14,6 @@ import { getData } from './data.js';
         deleteTask(list);
         toggleDisableBtn(form, btnSubmit);
         completeTask(list);
-
-        // const user = prompt(`Введите ваше имя`);
-        // console.log(user);
     }
     window.toDoInit = init;
 }

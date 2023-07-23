@@ -1,7 +1,16 @@
+const user = prompt(`Введите ваше имя`);
+console.log(user);
+
+// let dataList = {
+//     user,
+//     todo: [],
+// };
+
 let dataList = [];
 
 export const setData = (todo) => {
     dataList = todo;
+    // /dataList.todo = todo;
 };
 
 export const getData = () => {
@@ -15,6 +24,7 @@ export const addTodo = (task) => {
         status: true,
     };
     dataList.push(todo);
+    // dataList.todo.push(todo);
 
     return todo;
 };
