@@ -1,4 +1,4 @@
-import { createForm, createFormUser, createMain, createRow, createTable, createTableWrapper, createTitle } from "./createElements.js";
+import { createForm, createMain, createRow, createTable, createTableWrapper, createTitle } from "./createElements.js";
 import { setData } from "./data.js";
 import { getStorage } from "./serviceStorage.js";
 
@@ -28,7 +28,5 @@ export const renderToDoList = (app) => {
         list: table.tbody,
         btnSubmit,
         btnReset,
-        // formUser,
-        // overlayUser,
     }
 }

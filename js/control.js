@@ -30,6 +30,21 @@ export const clearInput = (form, btnReset) => {
     })
 };
 
+export const toggleDisableBtn = (form, btnSubmit) => {
+    const toDoInput = form.querySelector('.form-control');
+
+    toDoInput.addEventListener('input', (e) => {
+
+        const text = e.target.value;
+
+        if (text) {
+            btnSubmit.disabled = false;
+        } else {
+            btnSubmit.disabled = true;
+        }
+    });
+};
+
 export const deleteTask = (list) => {
     list.addEventListener('click', (e) => {
         const target = e.target;
@@ -82,26 +97,3 @@ export const completeTask = (list) => {
     });
 };
 
-export const toggleDisableBtn = (form, btnSubmit) => {
-    const toDoInput = form.querySelector('.form-control');
-
-    toDoInput.addEventListener('input', (e) => {
-        const text = e.target.value;
-
-        if (text) {
-            btnSubmit.disabled = false;
-        } else {
-            btnSubmit.disabled = true;
-        }
-    });
-};
-
-// export const modalContol = (formUser, overlayUser) => {
-//     overlayUser.addEventListener('click', (e) => {
-//         const target = e.target;
-//         if (target === formOverlay ||
-//             target.closest('.close')) {
-//             formOverlay.classList.remove('is-visible');
-//         }
-//     });
-// };

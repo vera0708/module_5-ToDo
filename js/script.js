@@ -3,9 +3,9 @@ import { renderToDoList, renderTodo } from "./renders.js";
 import { getData } from './data.js';
 
 {
-    const init = (selectorApp, user) => {
+    const init = (selectorApp) => {
         const app = document.querySelector(selectorApp);
-        const { list, btnReset, btnSubmit, form, formUser, overlayUser } = renderToDoList(app);
+        const { list, btnReset, btnSubmit, form } = renderToDoList(app);
         // modalContol(formUser, overlayUser);
 
         renderTodo(list, getData());
@@ -15,9 +15,8 @@ import { getData } from './data.js';
         toggleDisableBtn(form, btnSubmit);
         completeTask(list);
 
-        console.log(user);
-
-        //    const user = prompt(`Введите ваше имя`);
+        // const user = prompt(`Введите ваше имя`);
+        // console.log(user);
     }
     window.toDoInit = init;
 }
