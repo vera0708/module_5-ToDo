@@ -107,11 +107,12 @@ export const completeTask = (list) => {
             const taskToEnd = completeTask.textContent;
             const taskId = completeTaskId.textContent;
             updateTdStatus(list);
-            // endBtn.setAttribute('disabled', '');
+
             changeTodo(taskToEnd, taskId, 'st');
 
             const data = getData();
             setStorage('dataList', data);
+            endBtn.setAttribute('disabled', '');
         }
     });
 };
