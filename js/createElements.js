@@ -127,7 +127,7 @@ export const updateTdNumber = (list) => {
 export const updateTdStatus = (list) => {
     const row = list.querySelector('.table-success');
     const statusElem = row.querySelector('.status');
-    statusElem.textContent = false;
+    statusElem.textContent = 'Выполнена';
     console.log('Обновили статус', row);
 };
 

@@ -1,5 +1,5 @@
-const user = prompt(`Введите ваше имя`);
-console.log(user);
+// const user = prompt(`Введите ваше имя`);
+// console.log(user);
 
 // let dataList = {
 //     user,
@@ -37,19 +37,21 @@ export const removeTodo = (taskId) => {
     setData(newDataList);
 };
 
-export const changeTodo = (taskToEdit, taskId) => {
+export const changeTodo = (taskToEdit, taskId, st) => {
     const dataList = getData();
     const todoItem = dataList.find(item => item.id === taskId);
     todoItem.task = taskToEdit;
-    todoItem.status = false;
+    if (st) {
+        todoItem.status = false;
+    };
     setData(dataList);
 };
 
-export const udateTodo = (editTask, taskId) => {
-    const dataList = getData();
-    const todoItem = dataList.find(item => item.id === taskId);
+// export const udateTodo = (editTask, taskId) => {
+//     const dataList = getData();
+//     const todoItem = dataList.find(item => item.id === taskId);
 
-    todoItem.task = editTask;
-    console.log('todoItem.task :', todoItem.task);
-    setData(dataList);
-}
+//     todoItem.task = editTask;
+//     console.log('todoItem.task :', todoItem.task);
+//     setData(dataList);
+// }
