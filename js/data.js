@@ -10,10 +10,11 @@ let dataList = [];
 
 export const setData = (todo) => {
     dataList = todo;
-    // /dataList.todo = todo;
+    // dataList.todo = todo;
 };
 
 export const getData = () => {
+    //return dataList.todo
     return dataList;
 };
 
@@ -29,16 +30,26 @@ export const addTodo = (task) => {
     return todo;
 };
 
+// Далее везде изменить на dataList.todo
 export const removeTodo = (taskId) => {
     const dataList = getData();
     const newDataList = dataList.filter(item => item.id !== taskId);
     setData(newDataList);
 };
 
-export const changeTodo = (taskToEnd, taskId) => {
+export const changeTodo = (taskToEdit, taskId) => {
     const dataList = getData();
     const todoItem = dataList.find(item => item.id === taskId);
-    todoItem.task = taskToEnd;
+    todoItem.task = taskToEdit;
     todoItem.status = false;
+    setData(dataList);
+};
+
+export const udateTodo = (editTask, taskId) => {
+    const dataList = getData();
+    const todoItem = dataList.find(item => item.id === taskId);
+
+    todoItem.task = editTask;
+    console.log('todoItem.task :', todoItem.task);
     setData(dataList);
 }

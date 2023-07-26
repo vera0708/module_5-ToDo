@@ -1,4 +1,4 @@
-import { clearInput, completeTask, controlForm, deleteTask, toggleDisableBtn } from "./control.js";
+import { clearInput, completeTask, controlForm, deleteTask, editTask, toggleDisableBtn } from "./control.js";
 import { renderToDoList, renderTodo } from "./renders.js";
 import { getData } from './data.js';
 
@@ -14,6 +14,7 @@ import { getData } from './data.js';
         deleteTask(list);
         toggleDisableBtn(form, btnSubmit);
         completeTask(list);
+        editTask(list);
     }
     window.toDoInit = init;
 }

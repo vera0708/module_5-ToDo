@@ -99,11 +99,16 @@ export const createRow = (task, taskNumber) => {
     btnDel.textContent = 'Удалить';
 
     const btnEnd = document.createElement('button');
-    btnEnd.classList.add('btn', 'btn-success');
+    btnEnd.classList.add('btn', 'btn-success', 'me-3');
     btnEnd.type = 'button';
     btnEnd.textContent = 'Завершить';
 
-    tdBtnGroupe.append(btnDel, btnEnd);
+    const btnEdit = document.createElement('button');
+    btnEdit.classList.add('btn', 'btn-secondary');
+    btnEdit.type = 'button';
+    btnEdit.textContent = 'Редактировать';
+
+    tdBtnGroupe.append(btnDel, btnEnd, btnEdit);
 
     row.append(tdNumber, tdTask, tdStatus, tdBtnGroupe, tdInvisibleId);
 
