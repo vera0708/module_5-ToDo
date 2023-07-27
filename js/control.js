@@ -1,6 +1,6 @@
 import { createRow, updateTdNumber, updateTdStatus } from "./createElements.js";
 import { addTodo, changeTodo, getData, removeTodo } from "./data.js";
-import { setStorage } from "./serviceStorage.js";
+import { removeStorage, setStorage } from "./serviceStorage.js";
 
 export const controlForm = (form, list, btnSubmit) => {
     const toDoInput = form.querySelector('.form-control');
@@ -57,9 +57,9 @@ export const deleteTask = (list) => {
                 const taskId = taskIdElement.textContent;
 
                 removeTodo(taskId);
-
-                const data = getData();
-                setStorage('dataList', data);
+                removeStorage(taskId);
+                // const data = getData();
+                // setStorage('dataList', data);
 
                 target.closest('.table-light').remove();
                 updateTdNumber(list);

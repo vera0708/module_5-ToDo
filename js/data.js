@@ -1,20 +1,13 @@
-// const user = prompt(`Введите ваше имя`);
-// console.log(user);
-
-// let dataList = {
-//     user,
-//     todo: [],
-// };
+// import { getStorage } from "./serviceStorage.js";
+// export const user = prompt(`Введите ваше имя`);
 
 let dataList = [];
 
 export const setData = (todo) => {
     dataList = todo;
-    // dataList.todo = todo;
 };
 
 export const getData = () => {
-    //return dataList.todo
     return dataList;
 };
 
@@ -25,12 +18,10 @@ export const addTodo = (task) => {
         status: true,
     };
     dataList.push(todo);
-    // dataList.todo.push(todo);
 
     return todo;
 };
 
-// Далее везде изменить на dataList.todo
 export const removeTodo = (taskId) => {
     const dataList = getData();
     const newDataList = dataList.filter(item => item.id !== taskId);
