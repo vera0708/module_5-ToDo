@@ -1,4 +1,4 @@
-import { getData } from './data.js';
+import { getData, user } from './data.js';
 
 export const getStorage = (key) => {
     if (localStorage.getItem(key)) {
@@ -13,5 +13,5 @@ export const setStorage = (key, obj) => {
 
 export const removeStorage = (id) => {
     const filteredData = getData().filter(todo => todo.id !== id);
-    setStorage('dataList', filteredData);
+    setStorage(user, filteredData);
 }

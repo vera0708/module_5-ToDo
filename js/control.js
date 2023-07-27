@@ -1,5 +1,5 @@
 import { createRow, updateTdNumber, updateTdStatus } from "./createElements.js";
-import { addTodo, changeTodo, getData, removeTodo } from "./data.js";
+import { addTodo, changeTodo, getData, removeTodo, user } from "./data.js";
 import { removeStorage, setStorage } from "./serviceStorage.js";
 
 export const controlForm = (form, list, btnSubmit) => {
@@ -11,7 +11,7 @@ export const controlForm = (form, list, btnSubmit) => {
         const todo = addTodo(newToDo);
 
         const data = getData();
-        setStorage('dataList', data);
+        setStorage(user, data);
 
         const row = createRow(todo, data.length);
         list.append(row);
@@ -52,15 +52,11 @@ export const deleteTask = (list) => {
             const beSure = confirm(`Вы уверены, что хотите удалить этот пункт?`);
             if (beSure) {
                 const delRow = target.closest('.table-light');
-
                 const taskIdElement = delRow.querySelector('.task-id');
                 const taskId = taskIdElement.textContent;
 
                 removeTodo(taskId);
                 removeStorage(taskId);
-                // const data = getData();
-                // setStorage('dataList', data);
-
                 target.closest('.table-light').remove();
                 updateTdNumber(list);
             }
@@ -79,10 +75,9 @@ export const editTask = (list) => {
             const editedNewtask = prompt('Новое название задачи: ', editTask.textContent);
             editTask.textContent = editedNewtask;
             const taskId = editedTaskId.textContent;
-            // udateTodo(editedNewtask, taskId);
             changeTodo(editedNewtask, taskId);
             const data = getData();
-            setStorage('dataList', data);
+            setStorage(user, data);
         }
     });
 };
@@ -93,17 +88,13 @@ export const completeTask = (list) => {
         const endBtn = target.closest('.btn-success');
 
         if (endBtn) {
-
             const completeRow = target.closest('.table-light');
             const completeTask = completeRow.querySelector('.task');
             const completeTaskId = completeRow.querySelector('.task-id');
-
             completeRow.classList.remove('table-light');
             completeRow.classList.add('table-success');
-
             completeTask.classList.remove('task');
             completeTask.classList.add('text-decoration-line-through');
-
             const taskToEnd = completeTask.textContent;
             const taskId = completeTaskId.textContent;
             updateTdStatus(list);
@@ -111,7 +102,7 @@ export const completeTask = (list) => {
             changeTodo(taskToEnd, taskId, 'st');
 
             const data = getData();
-            setStorage('dataList', data);
+            setStorage(user, data);
             endBtn.setAttribute('disabled', '');
         }
     });

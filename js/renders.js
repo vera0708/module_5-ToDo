@@ -1,5 +1,5 @@
 import { createForm, createMain, createRow, createTable, createTableWrapper, createTitle } from "./createElements.js";
-import { setData } from "./data.js";
+import { setData, user } from "./data.js";
 import { getStorage } from "./serviceStorage.js";
 
 export const renderTodo = (elem, data) => {
@@ -9,7 +9,7 @@ export const renderTodo = (elem, data) => {
 }
 
 export const renderToDoList = (app) => {
-    setData(getStorage('dataList'));
+    setData(getStorage(user));
 
     const main = createMain();
     const title = createTitle();

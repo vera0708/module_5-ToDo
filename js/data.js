@@ -1,7 +1,7 @@
-// import { getStorage } from "./serviceStorage.js";
-// export const user = prompt(`Введите ваше имя`);
+import { getStorage } from "./serviceStorage.js";
+export const user = prompt(`Введите ваше имя`);
 
-let dataList = [];
+let dataList = getStorage(user);
 
 export const setData = (todo) => {
     dataList = todo;
