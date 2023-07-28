@@ -1,4 +1,4 @@
-import { createRow, updateTdNumber, updateTdStatus } from "./createElements.js";
+import { createRow, updateTdNumber } from "./createElements.js";
 import { addTodo, changeTodo, getData, removeTodo, user } from "./data.js";
 import { removeStorage, setStorage } from "./serviceStorage.js";
 
@@ -22,11 +22,12 @@ export const controlForm = (form, list, btnSubmit) => {
     })
 };
 
-export const clearInput = (form, btnReset) => {
+export const clearInput = (form, btnReset, btnSubmit) => {
     const toDoInput = form.querySelector('.form-control');
     btnReset.addEventListener('click', (e) => {
         e.preventDefault();
         toDoInput.value = '';
+        btnSubmit.setAttribute('disabled', '');
     })
 };
 
@@ -51,13 +52,13 @@ export const deleteTask = (list) => {
         if (delBtn) {
             const beSure = confirm(`Вы уверены, что хотите удалить этот пункт?`);
             if (beSure) {
-                const delRow = target.closest('.table-light');
+                const delRow = target.closest('.table-row');
                 const taskIdElement = delRow.querySelector('.task-id');
                 const taskId = taskIdElement.textContent;
 
                 removeTodo(taskId);
                 removeStorage(taskId);
-                target.closest('.table-light').remove();
+                target.closest('.table-row').remove();
                 updateTdNumber(list);
             }
         }
@@ -73,11 +74,13 @@ export const editTask = (list) => {
             const editTask = editedRow.querySelector('.task');
             const editedTaskId = editedRow.querySelector('.task-id');
             const editedNewtask = prompt('Новое название задачи: ', editTask.textContent);
-            editTask.textContent = editedNewtask;
-            const taskId = editedTaskId.textContent;
-            changeTodo(editedNewtask, taskId);
-            const data = getData();
-            setStorage(user, data);
+            if (editedNewtask !== null) {
+                editTask.textContent = editedNewtask;
+                const taskId = editedTaskId.textContent;
+                changeTodo(editedNewtask, taskId);
+                const data = getData();
+                setStorage(user, data);
+            }
         }
     });
 };
@@ -91,19 +94,21 @@ export const completeTask = (list) => {
             const completeRow = target.closest('.table-light');
             const completeTask = completeRow.querySelector('.task');
             const completeTaskId = completeRow.querySelector('.task-id');
+            const completeTaskStatus = completeRow.querySelector('.status');
+
             completeRow.classList.remove('table-light');
             completeRow.classList.add('table-success');
             completeTask.classList.remove('task');
             completeTask.classList.add('text-decoration-line-through');
             const taskToEnd = completeTask.textContent;
             const taskId = completeTaskId.textContent;
-            updateTdStatus(list);
+            completeTaskStatus.textContent = 'Выполнена';
 
             changeTodo(taskToEnd, taskId, 'st');
-
+            endBtn.setAttribute('disabled', '');
             const data = getData();
             setStorage(user, data);
-            endBtn.setAttribute('disabled', '');
+
         }
     });
 };

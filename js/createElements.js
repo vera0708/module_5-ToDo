@@ -72,6 +72,7 @@ export const createTable = () => {
 
 export const createRow = (task, taskNumber) => {
     const row = document.createElement('tr');
+    row.classList.add('table-row');
     row.classList.add(task.status ? 'table-light' : 'table-success');
 
     const tdNumber = document.createElement('td');
@@ -102,6 +103,7 @@ export const createRow = (task, taskNumber) => {
     btnEnd.classList.add('btn', 'btn-success', 'me-3');
     btnEnd.type = 'button';
     btnEnd.textContent = 'Завершить';
+    btnEnd.disabled = task.status ? false : true;
 
     const btnEdit = document.createElement('button');
     btnEdit.classList.add('btn', 'btn-secondary');
@@ -116,19 +118,11 @@ export const createRow = (task, taskNumber) => {
 };
 
 export const updateTdNumber = (list) => {
-    const rows = list.querySelectorAll('.table-light');
-
+    const rows = list.querySelectorAll('.table-row');
     rows.forEach((row, index) => {
         const numberElem = row.querySelector('.task-number');
         numberElem.textContent = index + 1;
     });
-};
-
-export const updateTdStatus = (list) => {
-    const row = list.querySelector('.table-success');
-    const statusElem = row.querySelector('.status');
-    statusElem.textContent = 'Выполнена';
-    console.log('Обновили статус', row);
 };
 
 // export const createFormUser = () => {

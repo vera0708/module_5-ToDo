@@ -10,7 +10,7 @@ import { getData } from './data.js';
 
         renderTodo(list, getData());
         controlForm(form, list, btnSubmit);
-        clearInput(form, btnReset);
+        clearInput(form, btnReset, btnSubmit);
         deleteTask(list);
         toggleDisableBtn(form, btnSubmit);
         completeTask(list);
